@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "titulo": "El Padrino",
+    "director": "Francis Ford Coppola",
+    "anio": 1972
+  },
+  {
+    "id": 2,
+    "titulo": "Pulp Fiction",
+    "director": "Quentin Tarantino",
+    "anio": 1994
+  },
+  {
+    "id": 3,
+    "titulo": "Parásitos",
+    "director": "Bong Joon-ho",
+    "anio": 2019
+  }
+]
