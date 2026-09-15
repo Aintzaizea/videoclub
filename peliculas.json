@@ -75,5 +75,89 @@
     "director": "James Wan",
     "anio": 2011,
     "imagen": "https://m.media-amazon.com/images/M/MV5BMTYyOTAxMDA0OF5BMl5BanBnXkFtZTcwNzgwNTc1NA@@._V1_QL75_UY562_CR0,0,380,562_.jpg"
+  },
+  {
+    "id": 17,
+    "titulo": "Super Mario Galaxy",
+    "director": "Aaron Horvath",
+    "anio": 2026,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BMGIzMGI4OWYtNzdkMy00MjJlLWJiMDMtZjY1Y2UwMzQ0YzY3XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+  },
+  {
+    "id": 18,
+    "titulo": "Apocalypse Now",
+    "director": "Francis Ford Coppola",
+    "anio": 1979,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BZDhiMTljYjYtODc1Yy00MmEwLTg2OTYtYmE1YTRmNDE4MmEwXkEyXkFqcGc@._V1_QL75_UX380_CR0,11,380,562_.jpg"
+  },
+  {
+    "id": 19,
+    "titulo": "Casa de mi Padre",
+    "director": "Matt Piedmont",
+    "anio": 2012,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BMWIxMWI1ZWMtN2UyMS00Nzc2LWE2NzktMzBiM2Y3ZGM2OWFjXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "id": 20,
+    "titulo": "Up",
+    "director": "Pete Docter",
+    "anio": 2009,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BNmI1ZTc5MWMtMDYyOS00ZDc2LTkzOTAtNjQ4NWIxNjYyNDgzXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "id": 21,
+    "titulo": "Shine",
+    "director": "Scott Hicks",
+    "anio": 1996,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BODZlMjRmN2UtZmY1Yi00YjhjLTg4OTAtZmQxNWMwZTY5YjI4XkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "id": 22,
+    "titulo": "Bandits",
+    "director": "Barry Levinson",
+    "anio": 2001,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BMTkyMzA3OTI3NV5BMl5BanBnXkFtZTYwMjU0ODM3._V1_SX300.jpg"
+  },
+  {
+    "id": 23,
+    "titulo": "Del amor y otros demonios",
+    "director": "Hilda Hidalgo",
+    "anio": 2009,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BMjE4NTU4NzIxMV5BMl5BanBnXkFtZTcwNTI3NDExMw@@._V1_SX300.jpg"
+  },
+  {
+    "id": 24,
+    "titulo": "Señales",
+    "director": "Andrea Orellana",
+    "anio": 2020,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BZjA1ZjVjNzktOWZlOC00MTNlLWExMzUtNzQ0NTNmNDFmM2ZlXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "id": 25,
+    "titulo": "¿Conoces a Joe Black?",
+    "director": "Martin Brest",
+    "anio": 1998,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BMjVjNjAwYWItMDc0ZC00MTEwLWJiN2MtM2U4YThjNWE5YTZmXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "id": 26,
+    "titulo": "Cadena perpetua",
+    "director": "Frank Darabont",
+    "anio": 1994,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg"
+  },
+  {
+    "id": 27,
+    "titulo": "A Clockwork Orange",
+    "director": " Stanley Kubrick",
+    "anio": 1971,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BMTY3MjM1Mzc4N15BMl5BanBnXkFtZTgwODM0NzAxMDE@._V1_SX300.jpg"
+  },
+  {
+    "id": 28,
+    "titulo": "Being John Malkovich",
+    "director": "Spike Jonze",
+    "anio": 1999,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BNDExODk1MTktNzRiYS00MWEyLTgyOWItYTI1OWY4NzI1NDM2XkEyXkFqcGc@._V1_SX300.jpg"
   }
 ]

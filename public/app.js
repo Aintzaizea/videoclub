@@ -1,83 +1,76 @@
-// ---- ESTADO Y REFERENCIAS GLOBALES DEL MODAL DE ELIMINAR ----
-// Guarda el id de la película pendiente de eliminar mientras el modal está abierto.
-// Se declara fuera de cualquier función para que tanto el botón "eliminar" de cada
-// tarjeta como los botones del modal puedan leerla y modificarla.
 let idPeliculaAEliminar = null;
 
-// Estas referencias se seleccionan UNA sola vez, al cargar el script.
-// Si estuvieran dentro de cargarPeliculas(), cada repintado de la lista
-// volvería a registrar los listeners de abajo, duplicándolos.
 const modal = document.querySelector('.modal');
 const btnCancelar = document.querySelector('#btn-cancelar-eliminar');
 const btnConfirmarEliminar = document.querySelector('#btn-confirmar-eliminar');
 
-// ---- LIGHTBOX PARA AMPLIAR EL PÓSTER ----
-// Se crea un único <div class="lightbox"> por código y se añade al final del <body>.
-// Servirá como overlay que muestra la imagen en grande al hacer clic en un póster.
 const lightbox = document.createElement('div');
 lightbox.className = 'lightbox';
-
-// Dentro del lightbox va una única <img>, que reutilizaremos para
-// mostrar la imagen que se haya pinchado (cambiando su "src" cada vez).
 const lightboxImg = document.createElement('img');
 lightbox.appendChild(lightboxImg);
 document.body.appendChild(lightbox);
 
-// Al hacer clic en cualquier parte del lightbox (el overlay), se cierra
-// quitando la clase "open" (esa clase es la que lo hace visible vía CSS).
 lightbox.addEventListener('click', () => {
   lightbox.classList.remove('open');
 });
 
-// ---- LISTENERS DEL MODAL DE CONFIRMAR ELIMINAR ----
-
-// Botón "Cancelar": cierra el modal (clase "oculto") y resetea el id pendiente,
-// para que no quede guardado ningún id "a medias" si se reabre el modal luego.
 btnCancelar.addEventListener('click', () => {
   modal.classList.add('oculto');
   idPeliculaAEliminar = null;
 });
 
-// Botón "Eliminar" (confirmar dentro del modal): hace la petición real al backend.
 btnConfirmarEliminar.addEventListener('click', async () => {
-  // Seguridad extra: si por algún motivo no hay id guardado, no hace nada.
   if (idPeliculaAEliminar === null) return;
 
-  // Petición DELETE al backend, mandando el id en el cuerpo como JSON.
   const respuestaEliminar = await fetch('/eliminar-pelicula', {
     method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ id: idPeliculaAEliminar })
   });
 
-  // Si el backend confirma que fue bien, cerramos el modal y volvemos
-  // a pintar la lista de películas (ya sin la que se acaba de borrar).
   if (respuestaEliminar.ok) {
     modal.classList.add('oculto');
     cargarPeliculas();
   }
 
-  // En cualquier caso, se limpia el id pendiente.
   idPeliculaAEliminar = null;
 });
 
-// ---- CARGA Y PINTADO DE LAS PELÍCULAS ----
+// ---- PAGINACIÓN ----
+const PELICULAS_POR_PAGINA = 12;
+
+// Aquí guardamos TODAS las películas que vienen del backend, una sola vez.
+// pintarPagina() trabaja siempre sobre esta copia, sin volver a pedir al servidor.
+let todasLasPeliculas = [];
+let paginaActual = 1;
 
 async function cargarPeliculas() {
-  // Pide al backend la lista actual de películas (en formato JSON).
   const respuesta = await fetch('/api/peliculas');
-  const peliculas = await respuesta.json();
-  console.log(peliculas);
+  todasLasPeliculas = await respuesta.json();
 
-  // Vaciamos el contenedor antes de repintar, para no duplicar tarjetas
-  // cada vez que se llama a esta función (por ejemplo, tras eliminar una).
+  // Si al eliminar la última película de una página nos quedamos en una
+  // página que ya no existe, retrocedemos automáticamente.
+  const totalPaginas = Math.max(1, Math.ceil(todasLasPeliculas.length / PELICULAS_POR_PAGINA));
+  if (paginaActual > totalPaginas) {
+    paginaActual = totalPaginas;
+  }
+
+  pintarPagina(paginaActual);
+}
+
+function pintarPagina(numeroPagina) {
+  paginaActual = numeroPagina;
+
   const listaPeliculas = document.querySelector('#lista-peliculas');
   listaPeliculas.innerHTML = '';
 
-  // Por cada película, se crea su tarjeta (<article>) y se añade al DOM.
-  peliculas.forEach(pelicula => {
+  // Calculamos qué "trozo" del array corresponde a esta página.
+  // Página 1 -> índices 0 a 11, página 2 -> 12 a 23, etc.
+  const indiceInicio = (numeroPagina - 1) * PELICULAS_POR_PAGINA;
+  const indiceFin = indiceInicio + PELICULAS_POR_PAGINA;
+  const peliculasDeEstaPagina = todasLasPeliculas.slice(indiceInicio, indiceFin);
+
+  peliculasDeEstaPagina.forEach(pelicula => {
     const tarjeta = document.createElement('article');
     tarjeta.className = 'tarjeta-pelicula';
     tarjeta.dataset.id = pelicula.id;
@@ -95,32 +88,24 @@ async function cargarPeliculas() {
     `;
     listaPeliculas.appendChild(tarjeta);
 
-    // Como esta tarjeta se crea de cero en cada repintado, es seguro
-    // registrar aquí sus listeners: no se acumulan, porque la tarjeta
-    // vieja (con sus listeners) se destruyó al hacer innerHTML = ''.
-
-    // Clic en el póster: abre el lightbox mostrando la imagen ampliada.
     const imagenPelicula = tarjeta.querySelector('.poster-pelicula');
     imagenPelicula.addEventListener('click', () => {
       lightboxImg.src = imagenPelicula.src;
       lightbox.classList.add('open');
     });
 
-    // Clic en el icono de papelera: guarda el id de esta película como
-    // "pendiente de eliminar" y muestra el modal de confirmación.
     const botonEliminar = tarjeta.querySelector('.btn-eliminar');
     botonEliminar.addEventListener('click', () => {
       idPeliculaAEliminar = Number(botonEliminar.dataset.id);
       modal.classList.remove('oculto');
     });
 
-    // Clic en el icono de lápiz: rellena el formulario de arriba con los
-    // datos de esta película y cambia su "action" para que, al enviarlo,
-    // vaya a /editar-pelicula en vez de /anadir-pelicula.
     const botonEditar = tarjeta.querySelector('.btn-editar');
     botonEditar.addEventListener('click', () => {
       const id = Number(botonEditar.dataset.id);
-      const peliculaSeleccionada = peliculas.find(p => p.id === id);
+      // Buscamos en todasLasPeliculas (no en peliculasDeEstaPagina),
+      // porque queremos poder editar cualquier película, no solo las de la página visible.
+      const peliculaSeleccionada = todasLasPeliculas.find(p => p.id === id);
       document.querySelector('form').action = '/editar-pelicula';
       document.querySelector('[name="id"]').value = peliculaSeleccionada.id;
       document.querySelector('#titulo').value = peliculaSeleccionada.titulo;
@@ -128,7 +113,43 @@ async function cargarPeliculas() {
       document.querySelector('#anio').value = peliculaSeleccionada.anio;
     });
   });
+
+  pintarControlesPaginacion();
 }
 
-// Primera carga de la página: pinta la lista de películas al arrancar.
+function pintarControlesPaginacion() {
+  const contenedorPaginacion = document.querySelector('#paginacion');
+  contenedorPaginacion.innerHTML = '';
+
+  const totalPaginas = Math.ceil(todasLasPeliculas.length / PELICULAS_POR_PAGINA);
+
+  // Si solo hay una página (o ninguna), no merece la pena mostrar controles.
+  if (totalPaginas <= 1) return;
+
+  // Botón "Anterior"
+  const btnAnterior = document.createElement('button');
+  btnAnterior.textContent = '←';
+  btnAnterior.disabled = paginaActual === 1;
+  btnAnterior.addEventListener('click', () => pintarPagina(paginaActual - 1));
+  contenedorPaginacion.appendChild(btnAnterior);
+
+  // Un botón numerado por cada página.
+  for (let i = 1; i <= totalPaginas; i++) {
+    const btnPagina = document.createElement('button');
+    btnPagina.textContent = i;
+    if (i === paginaActual) {
+      btnPagina.classList.add('pagina-activa');
+    }
+    btnPagina.addEventListener('click', () => pintarPagina(i));
+    contenedorPaginacion.appendChild(btnPagina);
+  }
+
+  // Botón "Siguiente"
+  const btnSiguiente = document.createElement('button');
+  btnSiguiente.textContent = '→';
+  btnSiguiente.disabled = paginaActual === totalPaginas;
+  btnSiguiente.addEventListener('click', () => pintarPagina(paginaActual + 1));
+  contenedorPaginacion.appendChild(btnSiguiente);
+}
+
 cargarPeliculas();

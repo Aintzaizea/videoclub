@@ -18,6 +18,7 @@ body {
     display: grid;
     grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
     align-content: start;
+    align-items: start;
     column-gap: 42px;
     padding: 0 70px 60px;
 }
@@ -48,9 +49,10 @@ h1::after {
 
 form {
     background-color: #fdfaf5;
+    width: 100%;
     max-width: 340px;
     margin: 40px 0 0;
-    padding: 34px 30px 30px;
+    padding: 34px 30px 80px;
     border: 2px solid #1c1c1c;
     border-radius: 4px;
     box-shadow: 6px 6px 0 #b08d57;
@@ -226,8 +228,9 @@ button[type="submit"] {
 }
 
 .poster-pelicula {
-    width: 85px;
+    width: 80px;
     object-fit: cover;
+    border-right: 2px solid #000000;
     flex-shrink: 0;
     cursor: zoom-in;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -349,6 +352,42 @@ button[type="submit"] {
   border: 3px solid #fdfaf5;
   border-radius: 10px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+#paginacion {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 35px;
+}
+
+#paginacion button {
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border: 1px solid #1c1c1c;
+  border-radius: 4px;
+  background-color: #fdfaf5;
+  color: #1c1c1c;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#paginacion button:hover:not(:disabled) {
+  background-color: #1c1c1c;
+  color: #f5f0e8;
+}
+
+#paginacion button.pagina-activa {
+  background-color: #3d2f01;
+  color: #f5f0e8;
+  border-color: #3d2f01;
+}
+
+#paginacion button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 @media (max-width: 600px) {
