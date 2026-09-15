@@ -19,7 +19,7 @@ body {
     grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
     align-content: start;
     column-gap: 42px;
-    padding: 0 40px 60px;
+    padding: 0 70px 60px;
 }
 
 h1 {
@@ -89,13 +89,13 @@ label {
 input[type="text"],
 input[type="number"] {
     width: 100%;
-    padding: 8px 16px;
+    padding: 16px 16px;
     font-family: "Manrope", sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     color: #333333;
     background-color: #ffffff;
     border: 1px solid #d8cdb8;
-    border-radius: 4px;
+    border-radius: 8px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -117,7 +117,7 @@ button[type="submit"] {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    margin-top: 8px;
+    margin-top: 50px;
     align-self: center;
     width: auto;
     padding: 12px 28px;
@@ -130,7 +130,7 @@ button[type="submit"] {
 
 #lista-peliculas {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     justify-content: start;
     gap: 18px;
 }
@@ -226,9 +226,15 @@ button[type="submit"] {
 }
 
 .poster-pelicula {
-    width: 70px;
+    width: 85px;
     object-fit: cover;
     flex-shrink: 0;
+    cursor: zoom-in;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.poster-pelicula:hover {
+    box-shadow: 0 10px 20px rgba(28, 28, 28, 0.18);
 }
 
 .link-imdb {
@@ -253,13 +259,15 @@ button[type="submit"] {
 .modal {
   position: fixed;
   inset: 0;
-  background-color: rgba(28, 28, 28, 0.6);
+  background-color: rgba(59, 34, 1, 0.295);
+  backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
   
 }
+
 
 .modal-contenido {
   background-color: #fdfaf5;
@@ -270,6 +278,8 @@ button[type="submit"] {
   width: 90%;
   text-align: center;
   }
+
+  
 
 .modal-contenido p {
   font-family: "Manrope", sans-serif;
@@ -284,6 +294,7 @@ button[type="submit"] {
   gap: 16px;
 }
 
+
 .modal-acciones button {
   font-family: "Manrope", sans-serif;
   font-weight: 600;
@@ -294,6 +305,8 @@ button[type="submit"] {
   cursor: pointer;
   
 }
+
+
 
 .btn-cancelar {
   background-color: transparent;
@@ -313,6 +326,30 @@ button[type="submit"] {
  .btn-confirmar:hover {
   background-color: #5a3e01;
  }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 70vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 3px solid #fdfaf5;
+  border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
 
 @media (max-width: 600px) {
     body {

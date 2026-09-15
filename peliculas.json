@@ -12,5 +12,68 @@
     "director": "John Lasseter",
     "anio": 1995,
     "imagen": "https://m.media-amazon.com/images/M/MV5BZTA3OWVjOWItNjE1NS00NzZiLWE1MjgtZDZhMWI1ZTlkNzYwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "id": 7,
+    "titulo": "Kill Bill",
+    "director": "Quentin Tarantino",
+    "anio": 2003,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BZmMyYzJlZmYtY2I3NC00NjAyLTkyZWItZjdjZDI1YTYyYTEwXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg"
+  },
+  {
+    "id": 9,
+    "titulo": "Pulp Fiction",
+    "director": "Quentin Tarantino",
+    "anio": 1994,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_QL75_UY562_CR3,0,380,562_.jpg"
+  },
+  {
+    "id": 10,
+    "titulo": "Titanic",
+    "director": "James Cameron",
+    "anio": 1997,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_QL75_UX380_CR0,2,380,562_.jpg"
+  },
+  {
+    "id": 11,
+    "titulo": "Matrix",
+    "director": "Wachowsky",
+    "anio": 1999,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg"
+  },
+  {
+    "id": 12,
+    "titulo": "La bella y la bestia",
+    "director": "Disney",
+    "anio": 1990,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BNWM5ODVmOTctZjJlNS00MzE4LWIxMzgtNjVhMGYxYmVkODZhXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "id": 13,
+    "titulo": "Peter Pan",
+    "director": "Clyde Geronimi",
+    "anio": 1953,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BOGUwNjg5MWItNTc5OC00MTNkLWEwNzYtYzA1M2Y4MWU3NmQwXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "id": 14,
+    "titulo": "La Cadena",
+    "director": "Alfred Castillo Jr",
+    "anio": 2021,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BOTg0Y2ZlNGEtZjdhNC00M2QyLWJmN2ItZDAwNmNkZDkyOTI1XkEyXkFqcGdeQXVyMzEyNDU4MTI@._V1_SX300.jpg"
+  },
+  {
+    "id": 15,
+    "titulo": "Lady Bug",
+    "director": "Brooks Campbell",
+    "anio": 2017,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BOTY4NzQ4MTQzMl5BMl5BanBnXkFtZTgwOTA0NzM2NDE@._V1_SX300.jpg"
+  },
+  {
+    "id": 16,
+    "titulo": "Insidious",
+    "director": "James Wan",
+    "anio": 2011,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BMTYyOTAxMDA0OF5BMl5BanBnXkFtZTcwNzgwNTc1NA@@._V1_QL75_UY562_CR0,0,380,562_.jpg"
   }
 ]
