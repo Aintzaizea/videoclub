@@ -1,20 +1,16 @@
 [
   {
-    "id": 1,
-    "titulo": "El Padrino",
-    "director": "Francis Ford Coppola",
-    "anio": 1972
-  },
-  {
-    "id": 2,
-    "titulo": "Pulp Fiction",
-    "director": "Quentin Tarantino",
-    "anio": 1994
-  },
-  {
     "id": 3,
-    "titulo": "Parásitos",
-    "director": "Bong Joon-ho",
-    "anio": 2019
+    "titulo": "Blade Runner",
+    "director": "Ridley Scott",
+    "anio": 1982,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BOWQ4YTBmNTQtMDYxMC00NGFjLTkwOGQtNzdhNmY1Nzc1MzUxXkEyXkFqcGc@._V1_SX300.jpg"
+  },
+  {
+    "id": 6,
+    "titulo": "Toy Story",
+    "director": "John Lasseter",
+    "anio": 1995,
+    "imagen": "https://m.media-amazon.com/images/M/MV5BZTA3OWVjOWItNjE1NS00NzZiLWE1MjgtZDZhMWI1ZTlkNzYwXkEyXkFqcGc@._V1_SX300.jpg"
   }
 ]

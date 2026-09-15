@@ -4,7 +4,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001
+;
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -32,28 +33,46 @@ app.get('/api/peliculas', (req, res) => {
 });
 
 app.post('/anadir-pelicula', async (req, res) => {
-  req.body.id = Date.now();
-  req.body.anio = Number(req.body.anio)
-  peliculas.push(req.body);
-  await guardarPeliculas();
-  console.log(req.body);
+  const { titulo, director, anio } = req.body;
+  const url = `https://www.omdbapi.com/?apikey=7f438388&t=${encodeURIComponent(titulo)}`;
+ console.log(url);
+  const respuestaOMDb = await fetch(`https://www.omdbapi.com/?apikey=7f438388&t=${encodeURIComponent(titulo)}&y=${anio}`);
+  const datosOMDb = await respuestaOMDb.json();
+  console.log(datosOMDb);
+  const imagen = (datosOMDb.Poster && datosOMDb.Poster !== "N/A") ? datosOMDb.Poster : null;
+
+  const nuevaPelicula = {
+    id: peliculas.length > 0 ? Math.max(...peliculas.map(pelicula => pelicula.id)) + 1 : 1,
+    titulo,
+    director,
+    anio: Number(anio),
+    imagen
+  };
+
+  peliculas.push(nuevaPelicula);
   res.redirect('/');
 });
 
-app.post ("/editar-pelicula", async (req, res)=> {
-const idPeliculaEditar = Number(req.body.id);
-const pelicula = peliculas.find(p => p.id === idPeliculaEditar);
-req.body.anio = Number(req.body.anio)
-pelicula.titulo = req.body.titulo
-pelicula.director = req.body.director
-pelicula.anio = req.body.anio
-await guardarPeliculas();
-res.redirect('/');
-});
+app.post("/editar-pelicula", async (req, res) => {
+  const idPeliculaEditar = Number(req.body.id);
+  const pelicula = peliculas.find(p => p.id === idPeliculaEditar);
+
+  if (!pelicula) {
+    return res.status(404).send('Película no encontrada');
+  }
+
+  pelicula.titulo = req.body.titulo;
+  pelicula.director = req.body.director;
+  pelicula.anio = Number(req.body.anio);
+  res.redirect('/');
+});;
 
 app.delete('/eliminar-pelicula', async (req, res) => {
-  const idEliminar = Number(req.query.id);
-  peliculas = peliculas.filter(p => p.id !== idEliminar);
+  const idEliminar = (req.body.id);
+    const indicePelicula = peliculas.findIndex(pelicula => pelicula.id === idEliminar);
+    if (indicePelicula !== -1) {
+      peliculas.splice(indicePelicula, 1);
+    }
   await guardarPeliculas();
   res.json(peliculas);
 });

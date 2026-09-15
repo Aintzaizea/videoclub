@@ -7,10 +7,16 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Manrope:wght@200..800&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Manrope:wght@200..800&family=Pathway+Gothic+One&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css" integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.css"
+            integrity="sha512-x9WwyMYBnlXMNQ6kQ/Lyzu1NqIhLQKL5Oq6xByfXuRj7s9CskyCbLv/1IjqzJmXwFXWr0ov6jBV7Qbc0hh9nHg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
@@ -41,7 +47,7 @@
 
             <label for="anio">Año</label>
             <input
-                type="number"
+                type="text"
                 id="anio"
                 name="anio"
                 autocomplete="off"
@@ -55,6 +61,19 @@
         <section id="peliculas" aria-label="Películas disponibles">
             <div id="lista-peliculas"></div>
         </section>
+        <div id="modal-confirmar" class="modal oculto">
+            <div class="modal-contenido">
+                <p>¿Retiramos esta película de la colección?</p>
+                <div class="modal-acciones">
+                    <button id="btn-cancelar-eliminar" class="btn-cancelar">
+                        Cancelar
+                    </button>
+                    <button id="btn-confirmar-eliminar" class="btn-confirmar">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <script src="app.js"></script>
     </body>
